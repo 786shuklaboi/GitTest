@@ -14,13 +14,12 @@ class arr3 {
 			if(n>9 && n<101){
 			    break;
 			}
-		        System.out.println("Enter integer between 10 - 100:");  //check validity
+		        System.out.println("Enter integer between 10 - 100:");  
 			n = num.nextInt();
 	        }
 		flag=false;
 		for (int k=i-1;k>=0;k--) {            
-			if(n==arr[k]){                      //Compare already filled array elements
-				System.out.println("Duplicate entry");
+			if(n==arr[k]){                      
 		            	flag=true;
 			}
 		}
