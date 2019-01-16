@@ -16,19 +16,19 @@ public class Program3 {
  
     
  
-    public HeartRates(String FName, String LName, int mon, int da, int ye) {
+    public HeartRates(String FirstName, String LastName, int m, int d, int y) {
  
-        firstName = FName;
-        lastName = LName;
-        month = mon;
-        day = da;
-        year = ye;
+        firstName = FirstName;
+        lastName = LastName;
+        month = m;
+        day = d;
+        year = y;
     }
  
     
  
-    public void setFirstName(String FName) {
-        firstName = FName;
+    public void setFirstName(String FirstName) {
+        firstName = FirstName;
     }
     
     public String getFirstName() {
@@ -36,8 +36,8 @@ public class Program3 {
     }
  
     
-    public void setLastName(String LName) {
-        lastName = LName;
+    public void setLastName(String LastName) {
+        lastName = LastName;
         }
  
     
@@ -46,10 +46,10 @@ public class Program3 {
         return firstName;
     }
     
-    public void setBirthDate(int mon, int da, int ye) {
-        month = mon;
-        day = da;
-        year = ye;
+    public void setBirthDate(int m, int d, int y) {
+        month = m;
+        day = d;
+        year = y;
     }
  
     public int getBirthDate() {
@@ -57,7 +57,7 @@ public class Program3 {
     }
  
     public int getAge(){
-        return 2015 - year;
+        return 2014 - year;
         }
  
     public int MaximumHeartRate() {
@@ -66,7 +66,7 @@ public class Program3 {
  
     
     public void targetHeartRate(){
-    System.out.print("Target Heart Rate Range: "+ MaximumHeartRate() * 0.5 + " to "+ MaximumHeartRate() * 0.85);
+    System.out.print("Targeted Heart Rate Range: "+ MaximumHeartRate() * 0.5 + " to "+ MaximumHeartRate() * 0.85);
     }
 }
  
