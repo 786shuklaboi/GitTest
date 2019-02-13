@@ -3,7 +3,7 @@ import java.lang.*;
 class MyTime {
 	private int hour;
 	private int minute;
-	private int second; hi
+	private int second;
 
 	public MyTime() {
 		hour = 0;
@@ -11,23 +11,25 @@ class MyTime {
 		second = 0;
 	}
 
-	public MyTime(int hour, int minute, int second) {
-		this.hour = hour;
-		this.minute = minute;
-		this.second = second;
+	public MyTime(int hour, int minute, int second)
+	{ 
+		if ( (hour <=23 &&  hour>=0) &&( minute<59 && minute>=0) && (second<=59 && second>=0)){
+			setTime(hour,minute,second);
+		}
+		else {
+			
+				throw new IllegalArgumentException("Invalid Hour, Minute or Second ");
+		}
 	}
 
 	public void setTime(int hour, int minute, int second) {
-		try {
-			if (hour>23 || hour<0 || minute>59 || minute<0 || second>59 || second<0)
-				throw new IllegalArgumentException("Invalid Hour, Minute or Seconds");
+		
+			
 			this.hour = hour;
 			this.minute = minute;
 			this.second = second;
-		}
-		catch (IllegalArgumentException e){
-			System.out.println(e.getMessage());
-		}
+		
+		
 	}
 
 	public int getHour() {
@@ -42,116 +44,96 @@ class MyTime {
 		return second;
 	}
 
+
+
 	public void setHour(int hour) {
-		try {
-			if (hour>23 || hour<0)
-				throw new IllegalArgumentException("Invalid Hours");
-			this.hour = hour;
+
+		
+			if (hour>23)
+				{
+					this.hour=0;
+				}
+				else {
+					this.hour = hour;
+		      }
 		}
-		catch (IllegalArgumentException e){
-			System.out.println(e.getMessage());
-		}
-	}
+	
+	
 
 	public void setMinute(int minute) {
-		try {
-			if (minute>59 || minute<0)
-				throw new IllegalArgumentException("Invalid Minutes");
-			this.minute = minute;
+		if(minute>59)
+		{
+			this.minute=0;
 		}
-		catch (IllegalArgumentException e){
-			System.out.println(e.getMessage());
+		else {
+			this.minute=minute;
 		}
+		
 	}
 
 	public void setSecond(int second) {
-		try {
-			if (second>59 || second<0)
-				throw new IllegalArgumentException("Invalid Seconds");
-			this.second = second;
+		if(second>59)
+		{
+			this.second=0;
 		}
-		catch (IllegalArgumentException e){
-			System.out.println(e.getMessage());
+		else {
+			this.second=second;
 		}
+
+		
 	}
 
 	public String toString() {
-		String time = Integer.toString(hour) + ":" + Integer.toString(minute) + ":" + Integer.toString(second);
+		String time = String.format("%02d:%02d:%02d",hour,minute,second);
 		return time;
 	}
 
 	public MyTime nextSecond() {
 		MyTime m = new MyTime();
-		++m.second;
-		if (m.second >= 60) {
-		  	m.second = 0;
-		  	++m.minute;
+		if(getSecond() == 59 && getMinute() == 59)
+		{m.setHour(this.getHour() +1);
+		m.setMinute(this.getMinute() +1);
+		m.setSecond(this.getSecond() +1);
+
 		}
-		if (m.minute >= 60) {
-		  	m.minute = 0;
-		  	++m.hour;
+		else if(getSecond()==59)
+		{
+			m.setHour(this.getHour());
+		m.setMinute(this.getMinute() +1);
+		m.setSecond(this.getSecond() +1);
 		}
-		if (m.hour >= 24) {
-		  	m.hour = 0;
+		else{
+			m.setHour(this.getHour());
+		m.setMinute(this.getMinute());
+		m.setSecond(this.getSecond() +1);
 		}
 		return m;
 	}
 
 	public MyTime nextMinute() {
 		MyTime m = new MyTime();
-		if (m.minute >= 60) {
-		  	m.minute = 0;
-		  	++m.hour;
+		if(getMinute() == 59)
+		{m.setHour(this.getHour() +1);
+		m.setMinute(this.getMinute() +1);
+		m.setSecond(this.getSecond());
+
 		}
-		if (m.hour >= 24) {
-		  	m.hour = 0;
+		else{
+			m.setHour(this.getHour());
+		m.setMinute(this.getMinute() +1);
+		m.setSecond(this.getSecond());
 		}
 		return m;
 	}
 
 	public MyTime nextHour() {
 		MyTime m = new MyTime();
-		if (m.hour >= 24) {
-		  	m.hour = 0;
-		}
+		m.setHour(this.getHour() +1);
+		m.setMinute(this.getMinute());
+		m.setSecond(this.getSecond());
 		return m;
 	}
 
-	public MyTime previousSecond() {
-		MyTime m = new MyTime();
-		--m.second;
-		if (m.second < 0) {
-		  	m.second = 59;
-		  	--m.minute;
-		}
-		if (m.minute < 0) {
-		  	m.minute = 59;
-		  	--m.hour;
-		}
-		if (m.hour < 0) {
-		  	m.hour = 23;
-		}
-		return m;
-	}
-
-	public MyTime previousMinute() {
-		MyTime m = new MyTime();
-		if (m.minute < 0) {
-		  	m.minute = 59;
-		  	--m.hour;
-		}
-		if (m.hour < 0) {
-		  	m.hour = 23;
-		}
-		return m;
-	}
-
-	public MyTime previousHour() {
-		MyTime m = new MyTime();
-		if (m.hour < 0) {
-		  	m.hour = 23;
-		}
-		return m;
-	}
+	
 
 }

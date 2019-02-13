@@ -13,4 +13,4 @@ class Worker{
 		System.out.println(this.name+"\t\t"+this.yearOfJoining+"\t\t"+this.address+"\n");
 	}
 
-}
+}	
